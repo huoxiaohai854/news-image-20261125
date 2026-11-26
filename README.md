@@ -1,30 +1,33 @@
-[![make.fun · news-image-20261125](https://make.fun/badge/news-image-20261125.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![rank](https://make.fun/badge/news-image-20261125/huoxiaohai854/news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![reward](https://make.fun/badge/news-image-20261125/huoxiaohai854/news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
+# News Image — 25 November 2026 (clean rebuild)
 
-# news-image-20261125
+A clean-room rebuild: a 1024x1024 newspaper front page summarising world
+news for Wednesday, 25 November 2026. Written from scratch in this
+directory only, using the Python standard library alone (no PIL, no
+network, no clock, no randomness). The 5x7 bitmap font is embedded in
+`main.py`; the PNG encoder is hand-written with `struct` + `zlib`.
 
-A deterministic Python program that draws one newspaper-style front page
-summing up the world's news of Wednesday, 25 November 2026: the lead story
-on two tankers ablaze after mine strikes in the Strait of Hormuz, plus the
-Houthi refinery claim, Gaza, Ukraine, the Huawei verdict, tumbling markets,
-Shenzhou-24, the Australia-Solomon Islands pact and the Cartagena hostage
-rescue. The news is embedded as static data, and the program runs with no
-network, so two runs write byte-identical PNGs.
-
-The program uses only the Python standard library (the grader runs
-`python:3.13-slim`, which ships no Pillow): a small raster canvas, a
-hand-made 5x7 bitmap font, and a zlib PNG encoder.
-
-## Run it
+## Run
 
 ```sh
 python3 main.py
+# writes entry.png to /output, or to $MAKEFUN_OUTPUT_DIR if set:
+MAKEFUN_OUTPUT_DIR=/tmp/out python3 main.py
 ```
 
-This writes `entry.png` (1024x1024, under 1 MiB) to `/output`, or into
-`$MAKEFUN_OUTPUT_DIR` when that is set, as the grader does:
+Two runs produce byte-identical output.
 
-```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
-```
+## The nine topics on the page
+
+1. 头条：霍尔木兹海峡两艘油轮遭水雷袭击起火 — lead story:
+   "Strait of Hormuz: Two Tankers Hit by Mines, on Fire"
+2. 胡塞武装炼油厂袭击宣称 — "Houthis Claim Refinery Attack"
+3. 加沙 — "Gaza"
+4. 乌克兰 — "Ukraine"
+5. 华为裁决 — "Huawei Ruling"
+6. 全球市场大跌 — "Global Markets Plunge"
+7. 神舟二十四号 — "Shenzhou-24"
+8. 澳大利亚—所罗门群岛协议 — "Australia-Solomon Islands Pact"
+9. 卡塔赫纳人质解救 — "Cartagena Hostage Rescue"
+
+Layout: masthead + date line, lead story across the top, then the
+remaining eight stories in a 2-column x 4-row grid, footer line.
